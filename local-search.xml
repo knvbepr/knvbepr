@@ -4,6 +4,19 @@
   
   
   <entry>
+    <title>Linux初体验</title>
+    <link href="/2026/03/29/Linux%E5%88%9D%E4%BD%93%E9%AA%8C/"/>
+    <url>/2026/03/29/Linux%E5%88%9D%E4%BD%93%E9%AA%8C/</url>
+    
+    <content type="html"><![CDATA[<blockquote><p>第一次在主力机体验实机Linux<br></p></blockquote><span id="more"></span><blockquote><p>系统为manjaro Linux (6.18)<br><br>安装了双系统(给manjaro分100GiB)<br><br>使用KDE Plasma桌面环境</p></blockquote><h2 id="这么强">!?这么强?!</h2><p>空载占用内存1.9GB<code>Windows11至少5GB</code><br><br>系统占用存储空间为13GB左右<code>Windows11至少需要28GB</code></p><h2 id="系统安装">系统安装</h2><p>安装简单方便，安装后记得切换引导硬盘(我装在另一块硬盘上)</p><h2 id="安装软件">安装软件</h2><p>安装过程相比Windows较为繁琐，但是在AI和朋友的帮助下还是十分容易解决的。</p><h2 id="Windows兼容性？">Windows兼容性？</h2><p>目前看来不太好。</p><p>个人使用的软件不能使用wine运行，可能是没有做好配置的问题。</p><p>目前还在探索中。</p><p>最后附上截图一张：<p><img src="https://picui.ogmua.cn/s1/2026/03/29/69c939b78163d.webp" alt="Linuxscreenshot.jpeg"></p>]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>hello</title>
     <link href="/2024/12/08/hello/"/>
     <url>/2024/12/08/hello/</url>
