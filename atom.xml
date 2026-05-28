@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <author>
+    <name>knvbepr</name>
+  </author>
+  <generator uri="https://hexo.io/">Hexo</generator>
+  <id>https://blog.knvbepr.top/</id>
+  <link href="https://blog.knvbepr.top/" rel="alternate"/>
+  <link href="https://blog.knvbepr.top/atom.xml" rel="self"/>
+  <rights>All rights reserved 2026, knvbepr</rights>
+  <title>冰璃的小窝</title>
+  <updated>2026-04-30T14:35:45.344Z</updated>
+  <entry>
+    <author>
+      <name>knvbepr</name>
+    </author>
+    <content>
+      <![CDATA[<blockquote><p>在Windows2000使用IIS部署远古Discuz!论坛步骤</p></blockquote><span id="more"></span><hr><h2 id="前期准备">前期准备</h2><p>需要准备的软件</p><p>PHP4.0.6 <br> MySQL4.1 <br> Discuz!本体</p><h2 id="安装流程">安装流程</h2><h3 id="安装IIS">安装IIS</h3><p>控制面板 -&gt; 添加/删除程序 -&gt; 添加/删除Windows组件<br>选择Internet信息服务</p><blockquote><p>需要Windows2000安装光盘</p></blockquote><h3 id="安装MySQL4-1">安装MySQL4.1</h3><p>mysql-essential-4.1.21-win32.msi<br><br>一路下一步，无需特别操作<br>root密码自定义</p><p>安装完成后进入MySQL 创建数据库</p><blockquote><p>CREATE DATABASE discuz;</p></blockquote><p>确认数据库创建</p><blockquote><p>SHOW DATABASES;</p></blockquote><p>预期的输出：</p><blockquote><p>…<br>|discuz  |<br>…</p></blockquote><hr><h3 id="安装PHP">安装PHP</h3><p>php-4.0.6-Win32.zip<br>解压文件到C:\php (自定位置)<br><br>将C:\php 添加到环境变量Path<br><br>编辑php.ini<br></p><figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><code class="hljs ini"><span class="hljs-section">[PHP]</span><br>核心修改点<br><br>...<br><span class="hljs-comment">;extension=php_ming.dll</span><br><span class="hljs-attr">extension</span>=php_mssql.dll  <span class="hljs-comment">;启用这两个拓展</span><br><span class="hljs-comment">;extension=php_oci8.dll</span><br>...<br><span class="hljs-comment">;extension=php_sybase_ct.dll</span><br><span class="hljs-comment">;extension=php_yaz.dll</span><br><span class="hljs-attr">extension</span>=php_zlib.dll<br>...<br><br><span class="hljs-section">[MySQL]</span><br><span class="hljs-comment">; Allow or prevent persistent links.</span><br><span class="hljs-attr">mysql.allow_persistent</span> = <span class="hljs-literal">On</span><br><br><span class="hljs-comment">; Maximum number of persistent links.  -1 means no limit.</span><br><span class="hljs-attr">mysql.max_persistent</span> = -<span class="hljs-number">1</span><br><br><span class="hljs-comment">; Maximum number of links (persistent + non-persistent).  -1 means no limit.</span><br><span class="hljs-attr">mysql.max_links</span> = -<span class="hljs-number">1</span><br><br><span class="hljs-comment">; Default port number for mysql_connect().  If unset, mysql_connect() will use</span><br><span class="hljs-comment">; the $MYSQL_TCP_PORT or the mysql-tcp entry in /etc/services or the</span><br><span class="hljs-comment">; compile-time value defined MYSQL_PORT (in that order).  Win32 will only look</span><br>&#x27; at <span class="hljs-attr">MYSQL_PORT.</span><br><span class="hljs-attr">mysql.default_port</span> =<span class="hljs-number">3306</span><br><br><span class="hljs-comment">; Default socket name for local MySQL connects.  If empty, uses the built-in</span><br><span class="hljs-comment">; MySQL defaults.</span><br><span class="hljs-attr">mysql.default_socket</span> =<br><br><span class="hljs-comment">; Default host for mysql_connect() (doesn&#x27;t apply in safe mode).</span><br><span class="hljs-attr">mysql.default_host</span> =localhost<br><br><span class="hljs-comment">; Default user for mysql_connect() (doesn&#x27;t apply in safe mode).</span><br><span class="hljs-attr">mysql.default_user</span> =root<br><br><span class="hljs-comment">; Default password for mysql_connect() (doesn&#x27;t apply in safe mode).</span><br><span class="hljs-comment">; Note that this is generally a *bad* idea to store passwords in this file.</span><br><span class="hljs-comment">; *Any* user with PHP access can run &#x27;echo cfg_get_var(&quot;mysql.default_password&quot;)</span><br><span class="hljs-comment">; and reveal this password!  And of course, any users with read access to this</span><br><span class="hljs-comment">; file will be able to reveal the password as well.</span><br><span class="hljs-attr">mysql.default_password</span> =<span class="hljs-number">123456</span> <span class="hljs-comment">;你的SQL root账户密码</span><br>...<br><br></code></pre></td></tr></table></figure><hr><h3 id="部署Discuz">部署Discuz!</h3><ol><li>将Discuz!文件复制到 C:\Inetpub\wwwroot （需要删除wwwroot内的文件）</li><li>在 wwwroot C:\php C:\WINNT 中给IIS用户添加权限</li></ol><blockquote><p>文件夹属性 -&gt; 安全 -&gt; 添加 -&gt; Internet来宾账号 （IUSR_XXXXX）添加权限</p></blockquote><ol start="3"><li>在IIS中添加PHP</li></ol><blockquote><p>运行 %SystemRoot%\system32\inetsrv\iis.msc<br>默认Web站点 -&gt; 属性 -&gt; 主目录 -&gt; 应用程序设置 -&gt; 配置 -&gt; 应用程序映射 -&gt; 添加<br>可执行文件 C:\php\php.exe<br>拓展名 .php<br>全部动作<br>全部勾选 -&gt;确定<br>返回到属性-&gt;文档 在默认文档添加index.php -&gt; 确定<br>返回到属性-&gt; 目录安全性 -&gt; 勾选匿名访问，取消勾选集成Windows验证 -&gt;匿名访问 编辑-&gt; 勾选允许IIS控制密码 -&gt; 确定</p></blockquote><ol start="4"><li>配置discuz<br>在Internet Explorer中打开 <a href="http://locathost/install.php">http://locathost/install.php</a><br>按照提示操作<br>或者编辑config.php</li></ol><blockquote><p>核心配置<br>$dbhost = ‘127.0.0.1’<br>$dbuser = ‘root’;    //建议新建单独的账户，不建议使用root账户<br>$dbpw = ‘你的数据库密码’;<br>$dbname = ‘discuz’ //保持默认<br>$dbminemail = ‘admin@domain.com’; //保持默认</p></blockquote><p>全部配置好后重启IIS服务 cmd: iisreset</p><hr><p>附搭建好的截图一张：</p><p><img src="https://img.cdn1.vip/i/69f00d0795ded_1777339655.webp" alt="Discuz!2.0"></p>]]>
+    </content>
+    <id>https://blog.knvbepr.top/2026/04/16/%E5%9C%A8Windows2000%E4%BD%BF%E7%94%A8IIS%E6%90%AD%E5%BB%BADiscuz-2-0%E8%AE%BA%E5%9D%9B/</id>
+    <link href="https://blog.knvbepr.top/2026/04/16/%E5%9C%A8Windows2000%E4%BD%BF%E7%94%A8IIS%E6%90%AD%E5%BB%BADiscuz-2-0%E8%AE%BA%E5%9D%9B/"/>
+    <published>2026-04-16T15:05:04.000Z</published>
+    <summary>
+      <![CDATA[<blockquote>
+<p>在Windows2000使用IIS部署远古Discuz!论坛步骤</p>
+</blockquote>]]>
+    </summary>
+    <title>在Windows2000使用IIS搭建Discuz!2.0论坛</title>
+    <updated>2026-04-30T14:35:45.344Z</updated>
+  </entry>
+  <entry>
+    <author>
+      <name>knvbepr</name>
+    </author>
+    <content>
+      <![CDATA[<blockquote><p>第一次在主力机体验实机Linux<br></p></blockquote><span id="more"></span><blockquote><p>系统为Manjaro Linux (6.18)<br><br>安装了双系统(给Manjaro分100GiB)<br><br>使用KDE Plasma桌面环境</p></blockquote><h2 id="这么强">!?这么强?!</h2><p>空载占用内存1.9GB<code>Windows11至少5GB</code><br><br>系统占用存储空间为13GB左右<code>Windows11至少需要28GB</code></p><h2 id="系统安装">系统安装</h2><p>安装简单方便，安装后记得切换引导硬盘(我装在另一块硬盘上)</p><h2 id="安装软件">安装软件</h2><p>安装过程相比Windows较为繁琐，但是在AI和朋友的帮助下还是十分容易解决的。</p><h2 id="Windows兼容性？">Windows兼容性？</h2><p>目前看来不太好。</p><p>个人使用的软件不能使用wine运行，可能是没有做好配置的问题。</p><p>目前还在探索中。</p><p>最后附上截图一张：<p><img src="https://img.cdn1.vip/i/69f00bebc94e5_1777339371.webp" alt="Linuxscreenshot"></p>]]>
+    </content>
+    <id>https://blog.knvbepr.top/2026/03/29/Linux%E5%88%9D%E4%BD%93%E9%AA%8C/</id>
+    <link href="https://blog.knvbepr.top/2026/03/29/Linux%E5%88%9D%E4%BD%93%E9%AA%8C/"/>
+    <published>2026-03-29T14:17:11.000Z</published>
+    <summary>
+      <![CDATA[<blockquote>
+<p>第一次在主力机体验实机Linux<br></p>
+</blockquote>]]>
+    </summary>
+    <title>Linux初体验</title>
+    <updated>2026-04-28T01:30:29.918Z</updated>
+  </entry>
+  <entry>
+    <author>
+      <name>knvbepr</name>
+    </author>
+    <content>
+      <![CDATA[<p>HELLO WORLD</p>]]>
+    </content>
+    <id>https://blog.knvbepr.top/2024/12/08/hello/</id>
+    <link href="https://blog.knvbepr.top/2024/12/08/hello/"/>
+    <published>2024-12-08T12:35:11.000Z</published>
+    <summary>
+      <![CDATA[<p>HELLO WORLD</p>]]>
+    </summary>
+    <title>hello</title>
+    <updated>2026-03-09T02:08:24.118Z</updated>
+  </entry>
+</feed>
