@@ -19,23 +19,21 @@
   <meta name="author" content="knvbepr">
   <meta name="keywords" content="">
   
-    <meta name="description" content="在Windows2000使用IIS部署远古Discuz!论坛步骤">
+    <meta name="description" content="回归模型知识点总结 — 上海二手房数据分析项目">
 <meta property="og:type" content="article">
-<meta property="og:title" content="在Windows2000使用IIS搭建Discuz!2.0论坛">
-<meta property="og:url" content="https://blog.knvbepr.top/2026/04/16/%E5%9C%A8Windows2000%E4%BD%BF%E7%94%A8IIS%E6%90%AD%E5%BB%BADiscuz-2-0%E8%AE%BA%E5%9D%9B/index.html">
+<meta property="og:title" content="回归模型知识点总结">
+<meta property="og:url" content="https://blog.knvbepr.top/2026/06/10/%E5%9B%9E%E5%BD%92%E6%A8%A1%E5%9E%8B%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/index.html">
 <meta property="og:site_name" content="冰璃的小窝">
-<meta property="og:description" content="在Windows2000使用IIS部署远古Discuz!论坛步骤">
+<meta property="og:description" content="回归模型知识点总结 — 上海二手房数据分析项目">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://img.cdn1.vip/i/69f00d0795ded_1777339655.webp">
-<meta property="article:published_time" content="2026-04-16T15:05:04.000Z">
-<meta property="article:modified_time" content="2026-04-30T14:35:45.344Z">
+<meta property="article:published_time" content="2026-06-10T12:03:45.000Z">
+<meta property="article:modified_time" content="2026-06-10T12:16:30.104Z">
 <meta property="article:author" content="knvbepr">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://img.cdn1.vip/i/69f00d0795ded_1777339655.webp">
   
   
   
-  <title>在Windows2000使用IIS搭建Discuz!2.0论坛 - 冰璃的小窝</title>
+  <title>回归模型知识点总结 - 冰璃的小窝</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -190,7 +188,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle">在Windows2000使用IIS搭建Discuz!2.0论坛</span>
+            <span id="subtitle">回归模型知识点总结</span>
           
         </div>
 
@@ -201,8 +199,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2026-04-16 23:05" pubdate>
-          2026年4月16日 晚上
+        <time datetime="2026-06-10 20:03" pubdate>
+          2026年6月10日 晚上
         </time>
       </span>
     
@@ -213,7 +211,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          547 字
+          1.7k 字
         
       </span>
     
@@ -224,7 +222,7 @@
         
         
         
-          5 分钟
+          14 分钟
         
       </span>
     
@@ -261,91 +259,349 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">在Windows2000使用IIS搭建Discuz!2.0论坛</h1>
+            <h1 id="seo-header">回归模型知识点总结</h1>
             
             
               <div class="markdown-body">
                 
-                <blockquote>
-<p>在Windows2000使用IIS部署远古Discuz!论坛步骤</p>
-</blockquote>
+                <h1>回归模型知识点总结 — 上海二手房数据分析项目</h1>
 <span id="more"></span>
+<h2 id="目录">目录</h2>
+<ul>
+<li>一、项目概览</li>
+<li>二、什么是回归模型</li>
+<li>三、R²（决定系数）</li>
+<li>四、普通线性回归的过拟合原因</li>
+<li>五、矩阵接近奇异详解</li>
+<li>六、Ridge 为什么更好</li>
+</ul>
 <hr>
-<h2 id="前期准备">前期准备</h2>
-<p>需要准备的软件</p>
-<p>PHP4.0.6 <br> MySQL4.1 <br> Discuz!本体</p>
-<h2 id="安装流程">安装流程</h2>
-<h3 id="安装IIS">安装IIS</h3>
-<p>控制面板 -&gt; 添加/删除程序 -&gt; 添加/删除Windows组件<br>
-选择Internet信息服务</p>
-<blockquote>
-<p>需要Windows2000安装光盘</p>
-</blockquote>
-<h3 id="安装MySQL4-1">安装MySQL4.1</h3>
-<p>mysql-essential-4.1.21-win32.msi<br><br>
-一路下一步，无需特别操作<br>
-root密码自定义</p>
-<p>安装完成后进入MySQL 创建数据库</p>
-<blockquote>
-<p>CREATE DATABASE discuz;</p>
-</blockquote>
-<p>确认数据库创建</p>
-<blockquote>
-<p>SHOW DATABASES;</p>
-</blockquote>
-<p>预期的输出：</p>
-<blockquote>
-<p>…<br>
-|discuz  |<br>
-…</p>
-</blockquote>
+<h2 id="一、项目概览">一、项目概览</h2>
+<p>数据来源：上海链家二手房数据.xlsx（898 条 → 清洗后 669 条）<br>
+特征字段：区域(19类)、朝向(8类)、楼层位置(3类)、卧室数、客厅数、面积、总楼层、建造年份<br>
+目标变量：总价（万元）</p>
+<p>建模流程：<br>
+数据清洗 → EDA → 5种模型对比 → 稳定性验证</p>
+<p>5种回归模型对比结果：</p>
+<table>
+<thead>
+<tr>
+<th>模型</th>
+<th>R²</th>
+<th>特点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>LinearRegression</td>
+<td>0.8335</td>
+<td>Baseline，无正则化</td>
+</tr>
+<tr>
+<td>Ridge（岭回归）</td>
+<td>0.8424</td>
+<td>最优，L2惩罚处理共线性</td>
+</tr>
+<tr>
+<td>Lasso</td>
+<td>0.8380</td>
+<td>L1惩罚自动特征选择</td>
+</tr>
+<tr>
+<td>RandomForest</td>
+<td>~0.82</td>
+<td>树模型，非线性</td>
+</tr>
+<tr>
+<td>GradientBoosting</td>
+<td>~0.80</td>
+<td>集成学习</td>
+</tr>
+</tbody>
+</table>
+<p>稳定性测试结果（普通线性回归，50次随机划分）：<br>
+R² 均值: 0.7178 ± 0.0765<br>
+波动范围约 0.50–0.80</p>
 <hr>
-<h3 id="安装PHP">安装PHP</h3>
-<p>php-4.0.6-Win32.zip<br>
-解压文件到C:\php (自定位置)<br><br>
-将C:\php 添加到环境变量Path<br><br>
-编辑php.ini<br></p>
-<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><code class="hljs ini"><span class="hljs-section">[PHP]</span><br>核心修改点<br><br>...<br><span class="hljs-comment">;extension=php_ming.dll</span><br><span class="hljs-attr">extension</span>=php_mssql.dll  <span class="hljs-comment">;启用这两个拓展</span><br><span class="hljs-comment">;extension=php_oci8.dll</span><br>...<br><span class="hljs-comment">;extension=php_sybase_ct.dll</span><br><span class="hljs-comment">;extension=php_yaz.dll</span><br><span class="hljs-attr">extension</span>=php_zlib.dll<br>...<br><br><span class="hljs-section">[MySQL]</span><br><span class="hljs-comment">; Allow or prevent persistent links.</span><br><span class="hljs-attr">mysql.allow_persistent</span> = <span class="hljs-literal">On</span><br><br><span class="hljs-comment">; Maximum number of persistent links.  -1 means no limit.</span><br><span class="hljs-attr">mysql.max_persistent</span> = -<span class="hljs-number">1</span><br><br><span class="hljs-comment">; Maximum number of links (persistent + non-persistent).  -1 means no limit.</span><br><span class="hljs-attr">mysql.max_links</span> = -<span class="hljs-number">1</span><br><br><span class="hljs-comment">; Default port number for mysql_connect().  If unset, mysql_connect() will use</span><br><span class="hljs-comment">; the $MYSQL_TCP_PORT or the mysql-tcp entry in /etc/services or the</span><br><span class="hljs-comment">; compile-time value defined MYSQL_PORT (in that order).  Win32 will only look</span><br>&#x27; at <span class="hljs-attr">MYSQL_PORT.</span><br><span class="hljs-attr">mysql.default_port</span> =<span class="hljs-number">3306</span><br><br><span class="hljs-comment">; Default socket name for local MySQL connects.  If empty, uses the built-in</span><br><span class="hljs-comment">; MySQL defaults.</span><br><span class="hljs-attr">mysql.default_socket</span> =<br><br><span class="hljs-comment">; Default host for mysql_connect() (doesn&#x27;t apply in safe mode).</span><br><span class="hljs-attr">mysql.default_host</span> =localhost<br><br><span class="hljs-comment">; Default user for mysql_connect() (doesn&#x27;t apply in safe mode).</span><br><span class="hljs-attr">mysql.default_user</span> =root<br><br><span class="hljs-comment">; Default password for mysql_connect() (doesn&#x27;t apply in safe mode).</span><br><span class="hljs-comment">; Note that this is generally a *bad* idea to store passwords in this file.</span><br><span class="hljs-comment">; *Any* user with PHP access can run &#x27;echo cfg_get_var(&quot;mysql.default_password&quot;)</span><br><span class="hljs-comment">; and reveal this password!  And of course, any users with read access to this</span><br><span class="hljs-comment">; file will be able to reveal the password as well.</span><br><span class="hljs-attr">mysql.default_password</span> =<span class="hljs-number">123456</span> <span class="hljs-comment">;你的SQL root账户密码</span><br>...<br><br></code></pre></td></tr></table></figure>
+<h2 id="二、什么是回归模型">二、什么是回归模型</h2>
+<p>回归模型 = “猜一个连续数字”</p>
+<p>输入一堆特征，输出一个连续数值。</p>
+<p>数学形式（线性回归）：<br>
+总价 = β₀ + β₁×区域_黄浦 + β₂×面积 + β₃×卧室数 + β₄×房龄 + …</p>
+<ul>
+<li>每个特征乘一个权重 β</li>
+<li>所有权重加起来 = 预测结果</li>
+<li>β 越大说明这个特征越重要</li>
+</ul>
+<p>实际学到的结果：<br>
+区域=黄浦 → 权重 +很大（正影响）<br>
+区域=崇明 → 权重 -很大（负影响）<br>
+面积      → 权重 +中等<br>
+卧室数    → 权重 +小<br>
+房龄      → 权重 -小</p>
+<p>回归 vs 分类：</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>回归</th>
+<th>分类</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>输出</td>
+<td>连续数字</td>
+<td>类别</td>
+</tr>
+<tr>
+<td>例子</td>
+<td>房价 800万</td>
+<td>房子&quot;贵/不贵&quot;</td>
+</tr>
+<tr>
+<td>问题</td>
+<td>“多少钱？”</td>
+<td>“属于哪类？”</td>
+</tr>
+<tr>
+<td>评估指标</td>
+<td>R² 越接近1越好</td>
+<td>准确率越高越好</td>
+</tr>
+</tbody>
+</table>
 <hr>
-<h3 id="部署Discuz">部署Discuz!</h3>
+<h2 id="三、R²（决定系数-Coefficient-of-Determination）">三、R²（决定系数 / Coefficient of Determination）</h2>
+<p>定义：模型能解释目标变量百分之多少的波动。</p>
+<p>公式（通俗版）：<br>
+R² = 1 - (模型预测的误差平方和) / (直接猜平均值的误差平方和)</p>
+<p>理解：<br>
+R² = 1  → 完美拟合，所有预测点全落在线上<br>
+R² = 0  → 跟直接猜平均值一样烂<br>
+R² = 0.7178 → 房价 71.78% 的波动可以被这些特征解释</p>
+<p>等级参考：</p>
+<table>
+<thead>
+<tr>
+<th>R²</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0.84</td>
+<td>模型解释了84%的房价变化</td>
+</tr>
+<tr>
+<td>0.72</td>
+<td>模型解释了72%的房价变化</td>
+</tr>
+<tr>
+<td>0.5</td>
+<td>模型解释力只有一半</td>
+</tr>
+<tr>
+<td>0.0</td>
+<td>模型毫无解释力</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="四、普通线性回归的过拟合原因（为什么只有-R²-0-72）">四、普通线性回归的过拟合原因（为什么只有 R²=0.72）</h2>
+<p>核心问题：普通线性回归（OLS，普通最小二乘法）没有正则化，在特征相关时不稳定。</p>
 <ol>
-<li>将Discuz!文件复制到 C:\Inetpub\wwwroot （需要删除wwwroot内的文件）</li>
-<li>在 wwwroot C:\php C:\WINNT 中给IIS用户添加权限</li>
+<li>
+<p>公式：<br>
+β̂ = (XᵀX)⁻¹ Xᵀ y</p>
+<p>关键在 (XᵀX)⁻¹ —— 矩阵求逆这一步。</p>
+</li>
+<li>
+<p>数据中的共线性问题：</p>
+<ul>
+<li>区域之间（黄浦/徐汇/长宁）在同个楼市中共同涨跌</li>
+<li>面积越大 → 卧室数通常越多（r≈0.6~0.7）</li>
+<li>区域越好 → 单价越高 → 同等面积总价更高</li>
+</ul>
+</li>
+<li>
+<p>过拟合的具体机制：<br>
+当特征高度相关时，(XᵀX) 中对应行列几乎成比例，矩阵&quot;接近奇异&quot;。<br>
+求逆后逆矩阵中的数字异常大。<br>
+训练集的微小随机波动 × 逆矩阵的超大数字 = 系数剧烈抖动。</p>
+<p>实际表现：<br>
+划分A: β₁=50,  β₂=30     → 正常预测<br>
+划分B: β₁=800, β₂=-720   → 绕大圈但也能预测</p>
+<p>两个模型在各自训练集上都行，但系数完全不同——这就是过拟合。<br>
+换测试集时，只有真正学到规律的模型才能泛化。</p>
+<p>证据——稳定性测试直接印证：<br>
+R² 波动范围约 0.50–0.80   ← 系数在大幅波动<br>
+R² 均值 0.7178 ± 0.0765   ← 标准差很大</p>
+</li>
+<li>
+<p>一句话总结：<br>
+普通线性回归的过拟合 = 特征多且相关 → (XᵀX)⁻¹ 放大微小噪声 → 系数剧烈波动<br>
+→ 换批数据就掉分。</p>
+</li>
 </ol>
-<blockquote>
-<p>文件夹属性 -&gt; 安全 -&gt; 添加 -&gt; Internet来宾账号 （IUSR_XXXXX）添加权限</p>
-</blockquote>
-<ol start="3">
-<li>在IIS中添加PHP</li>
-</ol>
-<blockquote>
-<p>运行 %SystemRoot%\system32\inetsrv\iis.msc<br>
-默认Web站点 -&gt; 属性 -&gt; 主目录 -&gt; 应用程序设置 -&gt; 配置 -&gt; 应用程序映射 -&gt; 添加<br>
-可执行文件 C:\php\php.exe<br>
-拓展名 .php<br>
-全部动作<br>
-全部勾选 -&gt;确定<br>
-返回到属性-&gt;文档 在默认文档添加index.php -&gt; 确定<br>
-返回到属性-&gt; 目录安全性 -&gt; 勾选匿名访问，取消勾选集成Windows验证 -&gt;匿名访问 编辑-&gt; 勾选允许IIS控制密码 -&gt; 确定</p>
-</blockquote>
-<ol start="4">
-<li>配置discuz<br>
-在Internet Explorer中打开 <a target="_blank" rel="noopener" href="http://locathost/install.php">http://locathost/install.php</a><br>
-按照提示操作<br>
-或者编辑config.php</li>
-</ol>
-<blockquote>
-<p>核心配置<br>
-$dbhost = ‘127.0.0.1’<br>
-$dbuser = ‘root’;    //建议新建单独的账户，不建议使用root账户<br>
-$dbpw = ‘你的数据库密码’;<br>
-$dbname = ‘discuz’ //保持默认<br>
-$dbminemail = ‘admin@domain.com’; //保持默认</p>
-</blockquote>
-<p>全部配置好后重启IIS服务 cmd: iisreset</p>
 <hr>
-<p>附搭建好的截图一张：</p>
-<p><img src="https://img.cdn1.vip/i/69f00d0795ded_1777339655.webp" srcset="/img/loading.gif" lazyload alt="Discuz!2.0"></p>
+<h2 id="五、矩阵接近奇异详解">五、矩阵接近奇异详解</h2>
+<p>什么是奇异矩阵？</p>
+<ul>
+<li>奇异矩阵 = 行列式为 0，无法求逆</li>
+<li>接近奇异 = 行列式接近 0，虽然能求逆，但逆矩阵的数字异常大</li>
+</ul>
+<p>为什么特征相关会导致奇异？</p>
+<p>用面积和房间数举例：<br>
+面积 ≈ 40 × 房间数 - 20  （几乎成线性关系）</p>
+<pre><code class="hljs">XᵀX 矩阵：
+</code></pre>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>面积</th>
+<th>房间数</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>面积</td>
+<td>1000</td>
+<td>800</td>
+</tr>
+<tr>
+<td>房间数</td>
+<td>800</td>
+<td>650</td>
+</tr>
+</tbody>
+</table>
+<pre><code class="hljs">行列式 = 1000×650 - 800×800 = 10000 （趋近于 0）
+
+逆矩阵：
+</code></pre>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>面积</th>
+<th>房间数</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>面积</td>
+<td>65</td>
+<td>-80</td>
+</tr>
+<tr>
+<td>房间数</td>
+<td>-80</td>
+<td>100</td>
+</tr>
+</tbody>
+</table>
+<pre><code class="hljs">数字很大（65、80、100），远超原始数据的量级。
+</code></pre>
+<p>后果：<br>
+逆矩阵 × 训练集的随机波动 → 系数被剧烈放大<br>
+换一批数据就得到完全不同的系数</p>
+<p>直观类比：<br>
+想分清楚&quot;糖贡献了多少甜？奶贡献了多少甜？&quot;<br>
+但数据中糖多的奶也多，糖少的奶也少——永远一起变化，没法独立区分。<br>
+这就是&quot;信息重叠&quot;——无法独立衡量每个特征的作用。</p>
+<p>Ridge 怎么解决？</p>
+<p>Ridge 公式：β̂ = (XᵀX + αI)⁻¹ Xᵀ y</p>
+<p>多了 αI，在矩阵对角线上加一个小常数：</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>面积</th>
+<th>房间数</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>面积</td>
+<td>1000+1</td>
+<td>800</td>
+</tr>
+<tr>
+<td>房间数</td>
+<td>800</td>
+<td>650+1</td>
+</tr>
+</tbody>
+</table>
+<p>行列式 = 1001×651 - 800×800 = 11651（大一截，不再接近 0）<br>
+逆矩阵数字变小，系数不再乱跳。</p>
+<hr>
+<h2 id="六、Ridge-为什么更好">六、Ridge 为什么更好</h2>
+<p>Ridge（岭回归）= OLS + L2 惩罚</p>
+<p>公式：min ||Xβ - y||² + α||β||²</p>
+<ul>
+<li>L2 惩罚 = 所有系数的平方和 × α</li>
+<li>α=0  → 退化为普通线性回归</li>
+<li>α越大 → 系数被强制缩小</li>
+</ul>
+<p>三个好处：</p>
+<ol>
+<li>解决共线性：(XᵀX + αI) 的行列式不再接近 0，求逆稳定</li>
+<li>防止过拟合：系数被抑制，不会因为数据微小变化而狂跳</li>
+<li>保留所有特征：和 Lasso 不同，Ridge 不会把系数压到 0</li>
+</ol>
+<p>直观类比：<br>
+普通线性回归像没有减震的车——路况好跑得不错（R²≈0.80+），<br>
+换个路况就颠到不行（R²≈0.50）。<br>
+Ridge 的 L2 惩罚相当于加了减震器，不管数据怎么切都稳在 R²≈0.84。</p>
+<hr>
+<h2 id="总结：线性模型对比表">总结：线性模型对比表</h2>
+<table>
+<thead>
+<tr>
+<th>模型</th>
+<th>损失函数</th>
+<th>做什么</th>
+<th>适用场景</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>LinearRegression</td>
+<td>OLS（无惩罚）</td>
+<td>纯拟合</td>
+<td>特征少、样本多、无共线性</td>
+</tr>
+<tr>
+<td>Ridge</td>
+<td>OLS + L2</td>
+<td>收缩系数</td>
+<td>特征较多、有共线性</td>
+</tr>
+<tr>
+<td>Lasso</td>
+<td>OLS + L1</td>
+<td>特征选择</td>
+<td>特征极多、需要降维</td>
+</tr>
+<tr>
+<td>LogisticRegression</td>
+<td>交叉熵</td>
+<td>分类</td>
+<td>二分类/多分类</td>
+</tr>
+</tbody>
+</table>
+<h3 id="上海二手房项目的关键设计">上海二手房项目的关键设计</h3>
+<ul>
+<li>目标取对数：Y_log = log(Y) 降低总价右偏分布影响</li>
+<li>数值特征标准化：StandardScaler 让卧室数、面积等在正则化模型中尺度一致</li>
+<li>One-Hot 编码：区域(19类)、朝向(8类)、楼层位置(3类)转为哑变量</li>
+<li>房龄特征：房龄 = 2024 - 建造年份，替代原始建造年份更直观</li>
+<li>对数还原：预测后 exp(y_pred_log) 还原为万元</li>
+</ul>
 
                 
               </div>
@@ -363,8 +619,8 @@ $dbminemail = ‘admin@domain.com’; //保持默认</p>
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>在Windows2000使用IIS搭建Discuz!2.0论坛</div>
-      <div>https://blog.knvbepr.top/2026/04/16/在Windows2000使用IIS搭建Discuz-2-0论坛/</div>
+      <div>回归模型知识点总结</div>
+      <div>https://blog.knvbepr.top/2026/06/10/回归模型知识点总结/</div>
     </div>
     <div class="license-meta">
       
@@ -376,7 +632,7 @@ $dbminemail = ‘admin@domain.com’; //保持默认</p>
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2026年4月16日</div>
+          <div>2026年6月10日</div>
         </div>
       
       
@@ -408,18 +664,12 @@ $dbminemail = ‘admin@domain.com’; //保持默认</p>
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2026/06/10/%E5%9B%9E%E5%BD%92%E6%A8%A1%E5%9E%8B%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/" title="回归模型知识点总结">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">回归模型知识点总结</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2026/03/29/Linux%E5%88%9D%E4%BD%93%E9%AA%8C/" title="Linux初体验">
-                        <span class="hidden-mobile">Linux初体验</span>
+                      <a href="/2026/04/16/%E5%9C%A8Windows2000%E4%BD%BF%E7%94%A8IIS%E6%90%AD%E5%BB%BADiscuz-2-0%E8%AE%BA%E5%9D%9B/" title="在Windows2000使用IIS搭建Discuz!2.0论坛">
+                        <span class="hidden-mobile">在Windows2000使用IIS搭建Discuz!2.0论坛</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
